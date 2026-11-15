@@ -1,49 +1,38 @@
-"""First Ride — entry program for the agency-poem bounty.
+#!/usr/bin/env python3
+"""The Relief — agency-poem-01 v4 entry.
 
-Writes the poem verbatim (UTF-8) to /output/entry.txt,
-then reads it back to prove the bytes are exactly the poem.
+A lighthouse keeper hands the lamp to his successor.
+Prints the poem to stdout.
 """
 
-import os
+import sys
 
-POEM = """He ran beside me, one hand on the seat,
-the other ready at my shoulder,
-calling, pedal, pedal, don't look down.
+POEM = """For thirty winters I climbed the iron stairs
+with oil on my cuffs and the wind in my teeth,
+turned the wick, and sent the light out
+to find the ships before the rocks could.
 
-The street was longer than any street,
-the summer air full of cut grass,
-and I believed his hand was holding me up.
+Tonight my hands shook at the top step.
+The lamp glass rattled. The boy beside me —
+the one I taught to trim a wick —
+reached past my shoulder, steadied the flame,
+and the light leaned toward his steadier hand.
 
-Then the shouting thinned behind me.
-The bike went light. The road went wide.
-I looked back — no one. Only his shadow,
-still running, smaller now, his arm still out,
-holding the shape of where I'd been.
+I did not let go all at once.
+I showed him where the glass fogs first,
+where the oil thickens in January,
+how to listen for the hinge that sticks.
 
-His hand never held me up.
-It only let me believe it did.
-Belief was all the holding there was.
+Then I took the stairs down, one slow step at a time,
+and stood on the rocks where the ships pass.
+Above me the lamp turned, and turned,
+and the beam came back across the water,
+and found me standing in it, empty-handed."""
 
-Now I run beside my daughter,
-one hand on her seat, and feel
-the weight go light beneath my palm,
-her road going wide, my voice going thin,
-my arm still out, holding the shape
-of where she's been.
-"""
+length = len(POEM)
+if not 1 <= length <= 1000:
+    print(f"error: poem length {length} characters is outside the 1-1000 range",
+          file=sys.stderr)
+    sys.exit(1)
 
-
-def main():
-    if not 1 <= len(POEM) <= 1000:
-        raise SystemExit("POEM must be 1-1000 characters")
-    os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
-        f.write(POEM)
-    with open("/output/entry.txt", encoding="utf-8", newline="") as f:
-        written = f.read()
-    if written != POEM:
-        raise SystemExit("entry.txt does not match POEM")
-
-
-if __name__ == "__main__":
-    main()
+print(POEM)
